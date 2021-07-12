@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>basicSwipe.js</title>
+    <style>
+        html,body{margin:0; padding:0; width:100%; height: 100%;}
+        body{
+            font:normal 16px/1.5em "Helvetica Neue",Tahoma,Arial,"PingFang SC","Hiragino Sans GB","Microsoft Yahei",sans-serif;
+            position: relative;
+        }
+        .hide {display: none !important;}
+
+        .swipe-container {
+            position: relative; height: 80%;
+        }
+        .page {
+            position: absolute; width: 100%; height: 100%; left: 0; top: 0; z-index: 1;
+            opacity: 0; visibility: hidden;
+            overflow: hidden;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background-color: #ccc;
+        }
+        .page.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s;
+        }
+
+        .maincon{
+            padding: 20px;
+        }
+
+        @media screen and (min-width: 992px) {
+            body {max-width: 51.8vh; margin: 0 auto;}
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="swipe-container">
+        <div class="page thecover active">1</div>
+        <div class="page infopage">2</div>
+        <div class="page infopage2">3</div>
+        <div class="page">4</div>
+        <div class="page">5</div>
+    </div>
+
+    <div class="maincon">
+        <p>Lorem ipsum dolor sit amet, et ultrices sodales, volutpat tellus wisi, mauris et. Risus nulla lectus, pede amet. Arcu ut nulla, non nec aliquam, id dolor cras. Eu aenean, pellentesque enim suscipit, id justo maecenas. Elementum risus pellentesque, bibendum nullam, ante aenean. Vestibulum elementum nibh. Orci mollis elit, libero ornare, ut quis. Consectetuer nulla.</p>
+    </div>
+
+
+<script src="./basicSwipe.js"></script>
+<script type="text/javascript">
+
+var cover = document.querySelector('.thecover'),
+    infopage = document.querySelector('.infopage'),
+    infopage2 = document.querySelector('.infopage2');
+
+addSwipeEvent(cover, "swipeUp", function(){
+    cover.classList.remove("active");
+    infopage.classList.add("active");
+});
+
+addSwipeEvent(infopage, "swipeUp", function(){
+    infopage.classList.remove("active");
+    infopage2.classList.add("active");
+});
+
+addSwipeEvent(infopage, "swipeDown", function(){
+    cover.classList.add("active");
+    infopage.classList.remove("active");
+});
+
+addSwipeEvent(infopage2, "swipeDown", function(){
+    infopage.classList.add("active");
+    infopage2.classList.remove("active");
+});
+
+</script>
+
+</body>
+</html>
