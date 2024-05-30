@@ -1,6 +1,6 @@
-function addSwipeEvent(theDom, eventName, handleEvent) {
+const basicSwipe = (theDom, eventName, handleEvent) => {
     // console.log(theDom, eventName, handleEvent);
-    var eStart=0, eEnd=0;
+    let eStart=0, eEnd=0;
 
     theDom.addEventListener('touchstart', function(e){
         switch (eventName) {
@@ -52,8 +52,8 @@ function addSwipeEvent(theDom, eventName, handleEvent) {
                 break;
         }
 
-        var moveVal = eEnd-eStart;
-        var moveAbsVal = Math.abs(moveVal);
+        let moveVal = eEnd-eStart;
+        let moveAbsVal = Math.abs(moveVal);
 
         // swipeUp
         if (moveVal<0 && moveAbsVal>30 && eventName=="swipeUp") {
@@ -95,8 +95,8 @@ function addSwipeEvent(theDom, eventName, handleEvent) {
                 break;
         }
 
-        var moveVal = eEnd-eStart;
-        var moveAbsVal = Math.abs(moveVal);
+        let moveVal = eEnd-eStart;
+        let moveAbsVal = Math.abs(moveVal);
 
         // swipeUp
         if (moveVal<0 && moveAbsVal>30 && eventName=="swipeUp") {
@@ -124,3 +124,5 @@ function addSwipeEvent(theDom, eventName, handleEvent) {
 
     }, false);
 }
+
+export default basicSwipe;
