@@ -3,11 +3,31 @@ simple swipe events library, just include swipeDown,swipeUp,swipeLeft,swipeRight
 
 [Demo](https://taosapp.github.io/basicSwipe.js/) page.
 
-# usage example
+# how to use
+
+```javascript
+import basicSwipe from "basic-swipe";
+
+var prevPage = document.querySelector('.p1');
+var nextPage = document.querySelector('.p2');
+
+// add swipe event to dom, basicSwipe(theDom, swipeName, handle)
+basicSwipe(prevPage, "swipeUp, function(){
+    prevPage.classList.remove("active");
+    nextPage.classList.add("active");
+});
+
+basicSwipe(nextPage, "swipeDown, function(){
+    prevPage.classList.add("active");
+    nextPage.classList.remove("active");
+});
+```
+
+# html & css example
 
 ## html
 ```html
-    <div class="page p1"></div>
+    <div class="page p1 active"></div>
     <div class="page p2"></div>
 ```
 
@@ -19,21 +39,10 @@ simple swipe events library, just include swipeDown,swipeUp,swipeLeft,swipeRight
     opacity: 0;
     visibility: hidden;
 }
-.p2 {z-index: 2;}
 .page.active {
+    z-index: 10;
     opacity: 1;
     visibility: visible;
     transition: opacity 1s;
 }
-```
-
-## js
-
-```javascript
-var p1 = document.querySelector('.p1');
-var p2 = document.querySelector('.p2');
-
-basicSwipe(p1, "swipeUp", function(){
-    p2.classList.remove("active");
-});
 ```
