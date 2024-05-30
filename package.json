@@ -2,12 +2,17 @@
   "name": "basic-swipe",
   "title": "basicSwipe.js",
   "description": "simple swipe events library, just include swipeDown,swipeUp,swipeLeft,swipeRight, vanilla javascript, no dependencies.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "main": "basicSwipe.js",
   "homepage": "https://taosapp.github.io/basicSwipe.js/",
   "author": "Lin Tao",
-  "keywords": ["basic swipe", "swipe event", "simple swipe", "swipe gestures"],
+  "keywords": [
+    "basic swipe",
+    "swipe event",
+    "simple swipe",
+    "swipe gestures"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/taosapp/basicSwipe.js.git"
