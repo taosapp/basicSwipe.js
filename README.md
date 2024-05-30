@@ -33,7 +33,7 @@ simple swipe events library, just include swipeDown,swipeUp,swipeLeft,swipeRight
 var p1 = document.querySelector('.p1');
 var p2 = document.querySelector('.p2');
 
-addSwipeEvent(p1, "swipeUp", function(){
+basicSwipe(p1, "swipeUp", function(){
     p2.classList.remove("active");
 });
 ```
