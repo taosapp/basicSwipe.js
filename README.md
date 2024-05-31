@@ -12,12 +12,12 @@ var prevPage = document.querySelector('.p1');
 var nextPage = document.querySelector('.p2');
 
 // add swipe event to dom, basicSwipe(theDom, swipeName, handle)
-basicSwipe(prevPage, "swipeUp, function(){
+basicSwipe(prevPage, "swipeUp", function(){
     prevPage.classList.remove("active");
     nextPage.classList.add("active");
 });
 
-basicSwipe(nextPage, "swipeDown, function(){
+basicSwipe(nextPage, "swipeDown", function(){
     prevPage.classList.add("active");
     nextPage.classList.remove("active");
 });
