@@ -2,7 +2,7 @@
   "name": "basic-swipe",
   "title": "basicSwipe.js",
   "description": "simple swipe events library, just include swipeDown,swipeUp,swipeLeft,swipeRight, vanilla javascript, no dependencies.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "main": "basicSwipe.js",
   "homepage": "https://taosapp.github.io/basicSwipe.js/",
