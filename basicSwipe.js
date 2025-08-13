@@ -1,128 +1,69 @@
 const basicSwipe = (theDom, eventName, handleEvent) => {
-    // console.log(theDom, eventName, handleEvent);
-    let eStart=0, eEnd=0;
-
-    theDom.addEventListener('touchstart', function(e){
-        switch (eventName) {
-            case "swipeDown" | "swipeUp":
-                eStart = e.targetTouches[0].clientY;
-                break;
-            case "swipeLeft" | "swipeRight":
-                eStart = e.targetTouches[0].clientX;
-                break;
-            default:
-                eStart = e.targetTouches[0].clientY;
-                break;
+    if (!theDom) {
+        console.error('DOM element is null or undefined');
+        return;
+    }
+    // Initialize start and end positions
+    let eStart = 0;
+    
+    // Check if it's a horizontal swipe (swipeLeft or swipeRight)
+    const isHorizontalSwipe = eventName === "swipeLeft" || eventName === "swipeRight";
+    
+    // Handle touch/click start event
+    const handleStart = function(e, isTouchEvent) {
+        // Get coordinates based on swipe direction and event type
+        if (isHorizontalSwipe) {
+            eStart = isTouchEvent ? e.targetTouches[0].clientX : e.clientX;
+        } else {
+            // Default to vertical for vertical swipes or invalid directions
+            eStart = isTouchEvent ? e.targetTouches[0].clientY : e.clientY;
         }
-    }, false);
-
-    theDom.addEventListener('mousedown', function(e){
-        switch (eventName) {
-            case "swipeDown" | "swipeUp":
-                eStart = e.clientY;
-                break;
-            case "swipeLeft" | "swipeRight":
-                eStart = e.clientX;
-                break;
-            default:
-                eStart = e.clientY;
-                break;
-        }
-    }, false);
-
-    theDom.addEventListener('touchmove', function(e){
+    };
+    
+    // Handle move event
+    const handleMove = function(e) {
         e.preventDefault();
-    }, false)
-
-    theDom.addEventListener('mousemove', function(e){
-        e.preventDefault();
-    }, false)
-
-    theDom.addEventListener('touchend', function(e){
-
-        switch (eventName) {
-            case "swipeDown" | "swipeUp":
-                eEnd = e.changedTouches[0].clientY;
-                break;
-            case "swipeLeft" | "swipeRight":
-                eEnd = e.changedTouches[0].clientX;
-                break;
-            default:
-                eEnd = e.changedTouches[0].clientY;
-                break;
+    };
+    
+    // Handle touch/click end event
+    const handleEnd = function(e, isTouchEvent) {
+        // Get end position
+        let eEnd;
+        if (isHorizontalSwipe) {
+            eEnd = isTouchEvent ? e.changedTouches[0].clientX : e.clientX;
+        } else {
+            // Default to vertical for vertical swipes or invalid directions
+            eEnd = isTouchEvent ? e.changedTouches[0].clientY : e.clientY;
         }
-
-        let moveVal = eEnd-eStart;
-        let moveAbsVal = Math.abs(moveVal);
-
-        // swipeUp
-        if (moveVal<0 && moveAbsVal>30 && eventName=="swipeUp") {
-            // console.log("swipeUp");
+        
+        // Calculate movement distance and direction
+        const moveVal = eEnd - eStart;
+        const moveAbsVal = Math.abs(moveVal);
+        
+        // Determine swipe direction
+        let direction;
+        if (isHorizontalSwipe) {
+            direction = moveVal > 0 ? "swipeRight" : "swipeLeft";
+        } else {
+            // Default to vertical for vertical swipes or invalid directions
+            direction = moveVal > 0 ? "swipeDown" : "swipeUp";
+        }
+        
+        // If movement is significant enough and direction matches, trigger callback
+        if (moveAbsVal > 30 && direction === eventName) {
             handleEvent();
         }
-
-        // swipeDown
-        if (moveVal>0 && moveAbsVal>30 && eventName=="swipeDown") {
-            // console.log("swipeDown");
-            handleEvent();
-        }
-
-        // swipeLeft
-        if (moveVal<0 && moveAbsVal>30 && eventName=="swipeLeft") {
-            // console.log("swipeLeft");
-            handleEvent();
-        }
-
-        // swipeRight
-        if (moveVal>0 && moveAbsVal>30 && eventName=="swipeRight") {
-            // console.log("swipeRight");
-            handleEvent();
-        }
-
-    }, false);
-
-    theDom.addEventListener('mouseup', function(e){
-
-        switch (eventName) {
-            case "swipeDown" | "swipeUp":
-                eEnd = e.clientY;
-                break;
-            case "swipeLeft" | "swipeRight":
-                eEnd = e.clientX;
-                break;
-            default:
-                eEnd = e.clientY;
-                break;
-        }
-
-        let moveVal = eEnd-eStart;
-        let moveAbsVal = Math.abs(moveVal);
-
-        // swipeUp
-        if (moveVal<0 && moveAbsVal>30 && eventName=="swipeUp") {
-            // console.log("swipeUp");
-            handleEvent();
-        }
-
-        // swipeDown
-        if (moveVal>0 && moveAbsVal>30 && eventName=="swipeDown") {
-            // console.log("swipeDown");
-            handleEvent();
-        }
-
-        // swipeLeft
-        if (moveVal<0 && moveAbsVal>30 && eventName=="swipeLeft") {
-            // console.log("swipeLeft");
-            handleEvent();
-        }
-
-        // swipeRight
-        if (moveVal>0 && moveAbsVal>30 && eventName=="swipeRight") {
-            // console.log("swipeRight");
-            handleEvent();
-        }
-
-    }, false);
+    };
+    
+    // addEventListener
+    theDom.addEventListener('touchstart', e => handleStart(e, true), false);
+    theDom.addEventListener('touchmove', handleMove, false);
+    theDom.addEventListener('touchend', e => handleEnd(e, true), false);
+    
+    // addEventListener
+    theDom.addEventListener('mousedown', e => handleStart(e, false), false);
+    theDom.addEventListener('mousemove', handleMove, false);
+    theDom.addEventListener('mouseup', e => handleEnd(e, false), false);
 }
 
 export default basicSwipe;

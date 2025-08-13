@@ -1,25 +1,29 @@
 import basicSwipe from "./basicSwipe.js";
 
-var cover = document.querySelector('.thecover'),
-    infopage = document.querySelector('.infopage'),
-    infopage2 = document.querySelector('.infopage2');
+const page1 = document.querySelector('.p1'),
+    page2 = document.querySelector('.p2'),
+    page3 = document.querySelector('.p3');
 
-basicSwipe(cover, "swipeUp", function(){
-    cover.classList.remove("active");
-    infopage.classList.add("active");
-});
+const hidePage1 = () => {
+    page1.classList.remove("active");
+    page2.classList.add("active");
+}
+const hidePage2 = () => {
+    page2.classList.remove("active");
+    page3.classList.add("active");
+}
 
-basicSwipe(infopage, "swipeUp", function(){
-    infopage.classList.remove("active");
-    infopage2.classList.add("active");
-});
+const showPage1 = () => {
+    page1.classList.add("active");
+    page2.classList.remove("active");
+}
+const showPage2 = () => {
+    page2.classList.add("active");
+    page3.classList.remove("active");
+}
 
-basicSwipe(infopage, "swipeDown", function(){
-    cover.classList.add("active");
-    infopage.classList.remove("active");
-});
+basicSwipe(page1, "swipeUp", hidePage1);
+basicSwipe(page2, "swipeUp", hidePage2);
 
-basicSwipe(infopage2, "swipeDown", function(){
-    infopage.classList.add("active");
-    infopage2.classList.remove("active");
-});
+basicSwipe(page2, "swipeDown", showPage1);
+basicSwipe(page3, "swipeDown", showPage2);
