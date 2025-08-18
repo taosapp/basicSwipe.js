@@ -1,4 +1,4 @@
-import basicSwipe from "./basicSwipe.js";
+import basicSwipe from "../basicSwipe.js";
 
 const page1 = document.querySelector('.p1'),
     page2 = document.querySelector('.p2'),
@@ -22,8 +22,20 @@ const showPage2 = () => {
     page3.classList.remove("active");
 }
 
-basicSwipe(page1, "swipeUp", hidePage1);
-basicSwipe(page2, "swipeUp", hidePage2);
+const SwipeUp1 = basicSwipe(page1, "swipeUp", hidePage1);
+const SwipeUp2 = basicSwipe(page2, "swipeUp", hidePage2);
 
-basicSwipe(page2, "swipeDown", showPage1);
-basicSwipe(page3, "swipeDown", showPage2);
+const SwipeDown1 = basicSwipe(page2, "swipeDown", showPage1);
+const SwipeDown2 = basicSwipe(page3, "swipeDown", showPage2);
+
+// bind
+SwipeUp1.on();
+SwipeUp2.on();
+SwipeDown1.on();
+SwipeDown2.on();
+
+// unbind
+// SwipeUp1.off();
+
+// bind again
+// SwipeUp1.on();

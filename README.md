@@ -4,7 +4,9 @@ simple swipe events library, just include swipeDown,swipeUp,swipeLeft,swipeRight
 [Demo](https://taosapp.github.io/basicSwipe.js/) page.
 
 # how to use
+
 ## vanilla javascript
+
 ```javascript
 import basicSwipe from "./basicSwipe.js";
 
@@ -30,58 +32,23 @@ const showPage2 = () => {
     page3.classList.remove("active");
 }
 
-basicSwipe(page1, "swipeUp", hidePage1);
-basicSwipe(page2, "swipeUp", hidePage2);
+const SwipeUp1 = basicSwipe(page1, "swipeUp", hidePage1);
+const SwipeUp2 = basicSwipe(page2, "swipeUp", hidePage2);
 
-basicSwipe(page2, "swipeDown", showPage1);
-basicSwipe(page3, "swipeDown", showPage2);
-```
-## Vue
-```javascript
-import { ref, nextTick, onMounted } from 'vue';
-import basicSwipe from "basic-swipe";
+const SwipeDown1 = basicSwipe(page2, "swipeDown", showPage1);
+const SwipeDown2 = basicSwipe(page3, "swipeDown", showPage2);
 
-const page1 = ref(null);
-const page2 = ref(null);
-const page3 = ref(null);
+// bind
+SwipeUp1.on();
+SwipeUp2.on();
+SwipeDown1.on();
+SwipeDown2.on();
 
-const page1State = ref(true);
-const page2State = ref(false);
-const page3State = ref(false);
+// unbind
+// SwipeUp1.off();
 
-const hidePage1 = () => {
-    page1State.value = false;
-    page2State.value = true;
-}
-const hidePage2 = () => {
-    page2State.value = false;
-    page3State.value = true;
-}
-
-const showPage1 = () => {
-    page1State.value = true;
-    page2State.value = false;
-}
-const showPage2 = () => {
-    page2State.value = true;
-    page3State.value = false;
-}
-
-onMounted(async () => {
-    nextTick(() => {
-        basicSwipe(page1.value, "swipeUp", hidePage1);
-        basicSwipe(page2.value, "swipeUp", hidePage2);
-
-        basicSwipe(page2.value, "swipeDown", showePage1);
-        basicSwipe(page3.value, "swipeDown", showePage2);
-    });
-});
-
-<template>
-    <div class="page p1" :class="{active: !page1State}" ref="page1"></div>
-    <div class="page p2" :class="{active: !page2State}" ref="page2"></div>
-    <div class="page p2" :class="{active: !page3State}" ref="page3"></div>
-</template>
+// bind again
+// SwipeUp1.on();
 ```
 
 # html & css example
