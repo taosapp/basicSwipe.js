@@ -29,10 +29,10 @@ const SwipeDown1 = basicSwipe(page2, "swipeDown", showPage1);
 const SwipeDown2 = basicSwipe(page3, "swipeDown", showPage2);
 
 // bind
-SwipeUp1.on();
-SwipeUp2.on();
-SwipeDown1.on();
-SwipeDown2.on();
+// SwipeUp1.on();
+// SwipeUp2.on();
+// SwipeDown1.on();
+// SwipeDown2.on();
 
 // unbind
 // SwipeUp1.off();

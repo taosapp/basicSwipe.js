@@ -1,0 +1,52 @@
+
+.swipe-container {
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transform: translateX(100%);
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #ccc;
+  font-size: 48px;
+  font-weight: bold;
+  color: #333;
+}
+
+.page.active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.p1 {
+  z-index: 3;
+  background-color: #ff6b6b;
+}
+
+.p2 {
+  z-index: 2;
+  background-color: #4ecdc4;
+}
+
+.p3 {
+  z-index: 1;
+  background-color: #45b7d1;
+}
+
+.maincon {
+  padding: 20px;
+}

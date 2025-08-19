@@ -1,0 +1,12 @@
+html,body{margin:0; padding:0; width:100%; height: 100%;}
+body{
+    font:normal 16px/1.5em "Helvetica Neue",Tahoma,Arial,"PingFang SC","Hiragino Sans GB","Microsoft Yahei",sans-serif;
+}
+
+#root {
+    height: 100vh;
+}
+
+@media screen and (min-width: 992px) {
+  body {max-width: 56vh; margin: 0 auto;}
+}
